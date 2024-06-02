@@ -1,0 +1,2 @@
+Main-Class: Main.MainRunnable
+Class-Path: build\classes\lib\Dandelionield_v1.5.5.jar
