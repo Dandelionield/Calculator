@@ -39,7 +39,7 @@ public class Dashboard<T extends JPanel> extends JFrame{
 		this.setBounds(200, 200, this.Panel.getWidth(), this.Panel.getHeight());
 		this.setLocationRelativeTo(null);
 		this.setUndecorated(true);
-        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 60, 60));
+        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
 		
 		this.contentPane = new JLayeredPane();
         this.contentPane.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));

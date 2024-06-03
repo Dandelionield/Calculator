@@ -10,7 +10,6 @@ import java.awt.EventQueue;
 
 import Graphic.Container.Dashboard;
 import Arithmetic.Machine.Standard;
-import Taylor.Arithmetic.Parser;
 
 public class MainRunnable{
 
@@ -33,14 +32,6 @@ public class MainRunnable{
             }
 			
         });
-		
-		/*System.out.print("\n\n");
-		
-		Parser p = new Parser("e");
-    
-        System.out.print(p);
-		
-		System.out.print("\n\n");//*/
 		
     }
     

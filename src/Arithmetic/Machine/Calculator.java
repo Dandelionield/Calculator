@@ -7,8 +7,22 @@ package Arithmetic.Machine;
  */
 
 import javax.swing.JPanel;
+import javax.swing.JButton;
+
+import javax.swing.border.AbstractBorder;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.Insets;
+import java.awt.Graphics;
+import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
+import java.awt.RenderingHints;
+import java.awt.geom.RoundRectangle2D;
 
 import Taylor.Arithmetic.Parser;
 
@@ -632,6 +646,96 @@ abstract class Calculator extends JPanel{
 		}
 		
 	};
+	
+	protected JButton Boton(String Text, int[] bounds, Font Format, Color Background, Color Foreground){
+		
+		JButton button = new JButton(Text){
+			
+			protected void paintComponent(Graphics g){
+				
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar sombra
+                g2d.setColor(Color.GRAY);
+                g2d.fillRoundRect(SHADOW_SIZE, SHADOW_SIZE, getWidth() - SHADOW_SIZE, getHeight() - SHADOW_SIZE, 10, 10);
+
+                // Dibujar fondo del botón
+                g2d.setColor(getBackground());
+                g2d.fillRoundRect(0, 0, getWidth() - SHADOW_SIZE, getHeight() - SHADOW_SIZE, 10, 10);
+
+                // Dibujar contorno del botón
+                g2d.setColor(Color.BLACK);
+                //g2d.drawRoundRect(0, 0, getWidth() - SHADOW_SIZE - 1, getHeight() - SHADOW_SIZE - 1, 10, 10);
+
+                g2d.dispose();
+
+                // Pintar el contenido del botón (incluido el texto)
+                super.paintComponent(g);
+				
+            }
+
+            @Override
+            public Insets getInsets(){
+				
+				//return new Insets(2, 2, SHADOW_SIZE, SHADOW_SIZE);
+				
+				return new Insets(SHADOW_SIZE - 10, SHADOW_SIZE - 10, 2, 2);
+				
+            }
+
+            @Override
+            public Insets getInsets(Insets insets){
+				
+                insets.left = 2;
+                insets.right = SHADOW_SIZE;
+                insets.top = 2;
+                insets.bottom = SHADOW_SIZE;
+				
+                return insets;
+				
+            }
+
+            private static final int SHADOW_SIZE = 5;
+			
+		};
+		
+		button.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
+		button.setFont(Format);
+		/*button.setVerticalTextPosition(JButton.CENTER);
+        button.setHorizontalTextPosition(JButton.CENTER);//*/
+		button.setBorderPainted(true);
+		button.setBackground(Background);
+		button.setForeground(Foreground);
+		button.setFocusable(false);
+		button.setOpaque(true);
+        button.setContentAreaFilled(false);
+		button.setBorder(null);
+		
+		return button;
+		
+	}
+	
+	protected AbstractBorder getAbstractBorder(){
+		
+		return new AbstractBorder(){
+            
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height){
+				
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                g2d.setColor(Color.BLACK);
+				g2d.setStroke(new BasicStroke(3));
+                g2d.drawRoundRect(x+1, y, (width-3), (height-2), 30, 30);
+
+                g2d.dispose();
+				
+            }
+			
+        };
+		
+	}
 	
 	public abstract void Save(Parser p);
 	
