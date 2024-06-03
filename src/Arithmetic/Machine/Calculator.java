@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 
 import Taylor.Arithmetic.Parser;
 
-public abstract class Calculator{
+abstract class Calculator extends JPanel{
 	
 	protected StringBuilder equation = new StringBuilder();
 	protected int caretPosition = 0;
